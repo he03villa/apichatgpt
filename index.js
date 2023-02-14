@@ -32,5 +32,5 @@ app.post('/prueba', async (req, res) => {
 });
 
 app.listen(process.env.HTTP_PORT, () => {
-  console.log('Servidor iniciado en el puerto '+process.env.HTTP_PORT);
+  console.log('Servidor iniciado en el puerto: '+process.env.HTTP_PORT);
 });
