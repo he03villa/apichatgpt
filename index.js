@@ -3,9 +3,10 @@ const app = express();
 const bodyparser = require('body-parser');
 const { Configuration, OpenAIApi } = require("openai");
 const { json } = require('body-parser');
+require('dotenv').config();
 
 const configuration = new Configuration({
-  apiKey: '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'
+  apiKey: process.env.LLAVE_CHAT
 });
 const openai = new OpenAIApi(configuration);
 app.use(bodyparser.urlencoded({
@@ -30,6 +31,6 @@ app.post('/prueba', async (req, res) => {
   res.send(response.data.choices[0].text);
 });
 
-app.listen(3000, () => {
-  console.log('Servidor iniciado en el puerto 3000');
+app.listen(process.env.HTTP_PORT, () => {
+  console.log('Servidor iniciado en el puerto '+process.env.HTTP_PORT);
 });
