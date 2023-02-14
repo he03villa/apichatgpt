@@ -33,7 +33,7 @@ api.post('/prueba', async (req, res) => {
   res.send(response.data.choices[0].text);
 });
 
-api.get('/', (req, res) {
+api.get('/', (req, res) => {
   res.send({'message': 'jajajajaj'});
 });
 
