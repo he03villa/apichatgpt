@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const api = express.Router();
 const bodyparser = require('body-parser');
 const { Configuration, OpenAIApi } = require("openai");
 var port = process.env.HTTP_PORT || 3800;
@@ -15,7 +16,7 @@ app.use(bodyparser.urlencoded({
 }));
 
 //cambiar friend por nombre del puchamon
-app.post('/api/prueba', async (req, res) => {
+api.post('/prueba', async (req, res) => {
   console.log(req.body);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
@@ -31,6 +32,8 @@ app.post('/api/prueba', async (req, res) => {
   
   res.send(response.data.choices[0].text);
 });
+
+app.use('/api', api);
 
 app.listen(port, () => {
   console.log('Servidor iniciado en el puerto: '+port);
