@@ -18,13 +18,13 @@ app.post('/prueba', async (req, res) => {
   console.log(req.body);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: "You: "+req.body.msg+"\nFriend:",
-    temperature: 0.5,
-    max_tokens: 1000,
+    prompt: "Quiero que actues como un amigo y que todo lo respondas en español: Tu:"+ req.body.msg+"\nAmigo:",
+    temperature: 0.2,
+    max_tokens: 30,
     top_p: 1.0,
     frequency_penalty: 0.5,
     presence_penalty: 0.0,
-    stop: ["You:"],
+    stop:[" Humano:", " Mascota:"],
   });
   //console.log(response.data.choices[0].text);
   
