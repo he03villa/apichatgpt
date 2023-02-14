@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyparser = require('body-parser');
 const { Configuration, OpenAIApi } = require("openai");
+var port = process.env.HTTP_PORT || 3800;
 const { json } = require('body-parser');
 require('dotenv').config();
 
@@ -14,7 +15,7 @@ app.use(bodyparser.urlencoded({
 }));
 
 //cambiar friend por nombre del puchamon
-app.post('/prueba', async (req, res) => {
+app.post('/api/prueba', async (req, res) => {
   console.log(req.body);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
@@ -31,6 +32,6 @@ app.post('/prueba', async (req, res) => {
   res.send(response.data.choices[0].text);
 });
 
-app.listen(process.env.HTTP_PORT, () => {
-  console.log('Servidor iniciado en el puerto: '+process.env.HTTP_PORT);
+app.listen(port, () => {
+  console.log('Servidor iniciado en el puerto: '+port);
 });
